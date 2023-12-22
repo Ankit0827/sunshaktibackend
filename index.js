@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://sunshaktisolar.com/',
     methods: 'POST',
     optionsSuccessStatus: 204,
 };
