@@ -1,25 +1,20 @@
-
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-
-
 const cors = require("cors");
+
+const app = express();
+
 const corsOptions = {
     origin: 'http://localhost:3000',
     methods: 'POST',
     optionsSuccessStatus: 204,
-  };
-  
-  app.use(cors(corsOptions));
-
-const app = express();
+};
 
 app.use(cors(corsOptions));
-
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 app.post('/send-email', async (req, res) => {
     const { company_name, phone, email, pincode, messages } = req.body;
@@ -48,7 +43,7 @@ app.post('/send-email', async (req, res) => {
     };
 
     try {
-        const info = await transporter.sendMail(mailOptions); 
+        const info = await transporter.sendMail(mailOptions);
         console.log("Email sent:", info.response);
         res.status(200).send("Email sent successfully");
     } catch (error) {
