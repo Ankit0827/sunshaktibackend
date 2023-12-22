@@ -6,10 +6,17 @@ const nodemailer = require('nodemailer');
 
 
 const cors = require("cors");
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: 'POST',
+    optionsSuccessStatus: 204,
+  };
+  
+  app.use(cors(corsOptions));
 
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
