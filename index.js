@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-    origin: 'https://sunshaktisolar.com',
+    origin: 'https://sunshaktisolar.com/',
     methods: 'POST',
     optionsSuccessStatus: 204,
 };
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/send-email', async (req, res) => {
-    const { company_name, phone, email, pincode, messages } = req.body;
+    const { company_name, phone, email, pincode, messages,solarFor } = req.body;
 
     // Create a nodemailer transporter
     const transporter = nodemailer.createTransport({
@@ -33,12 +33,12 @@ app.post('/send-email', async (req, res) => {
         from: email,
         to: "a.verma0827@gmail.com",
         subject: "Request for pricing",
-        text: `
-            Company Name: ${company_name}
-            Phone: ${phone}
-            Email: ${email}
-            Pincode: ${pincode}
-            Message: ${messages}
+text: `Hello Sir, I want to know the pricing of the solar panel.Let me know when will we contact to each others for further discusion and also you can contact me given by the following details.
+Full Name: ${company_name}`+`${phone}
+Email: ${email}
+Mobile: ${pincode}
+Light bills: ${messages}
+Solar for: ${solarFor}
         `
     };
 
