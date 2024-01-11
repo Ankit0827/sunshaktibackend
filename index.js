@@ -39,7 +39,7 @@ app.post("/send-email", async (req, res) => {
         to: "a.verma0827@gmail.com",
         subject: "Request for pricing",
         text: `Hello Sir, I want to know the pricing of the solar panel.Let me know when will we contact to each others for further discusion and also you can contact me given by the following details.
-Full Name: ${First_name}`+`${Last_name}
+Full Name: ${First_name}` + `${Last_name}
 Email: ${Email}
 Mobile: ${Mobile}
 Light bills: ${Light_bill}
