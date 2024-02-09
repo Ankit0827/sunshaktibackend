@@ -34,7 +34,7 @@ app.post("/send-email", async (req, res) => {
   // Email content
   const mailOptions = {
     from: Email,
-    to: "info.sunshaktisolar@gmail.com",
+    to: "a.verma0827@gmail.com",
     subject: "Request for pricing",
     text:
       `Hello Sir, I want to know the pricing of the solar panel.Let me know when will we contact to each others for further discusion and also you can contact me given by the following details.
