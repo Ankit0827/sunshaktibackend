@@ -19,7 +19,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post("/send-email", async (req, res) => {
+app.post("/send-emails", async (req, res) => {
   const { First_name, Last_name, Email, Mobile, Solar_for, Light_bill } =
     req.body;
   // Create a nodemailer transporter
@@ -31,6 +31,7 @@ app.post("/send-email", async (req, res) => {
     },
   });
 
+  
   // Email content
   const mailOptions = {
     from: Email,
@@ -50,6 +51,44 @@ Solar for: ${Solar_for}
   try {
     console.log(mailOptions);
     const info = await transporter.sendMail(mailOptions);
+    res.status(200).send("Email sent successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Something went wrong");
+  }
+});
+
+app.post("/send-messages", async (req, res) => {
+  const { First_name, Last_name, Email, Mobile, Solar_for,Messages} =
+    req.body;
+  // Create a nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  
+  // Messages content
+  const messagesOptions = {
+    from: Email,
+    to: "a.verma0827@gmail.com",
+    subject: "Request for pricing",
+    text:`
+${Messages}    
+Full Name: ${First_name}` +
+      `${Last_name}
+Email: ${Email}
+Mobile: ${Mobile}
+Solar for: ${Solar_for}
+`,
+  };
+
+  try {
+    console.log(messagesOptions);
+    const info = await transporter.sendMail(messagesOptions);
     res.status(200).send("Email sent successfully");
   } catch (error) {
     console.error(error);
